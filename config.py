@@ -19,7 +19,7 @@ class Config:
     vector_store_path: str = "chroma"
 
     # Retriever
-    top_k: int = 5
+    top_k: int = 3
 
     # API Key (Load from environment variable)
     openai_api_key: str = os.getenv("OPENAI_API_KEY")

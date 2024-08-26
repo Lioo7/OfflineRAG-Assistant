@@ -28,6 +28,10 @@ def main():
         doc_loader = DocumentLoader(config)
         logger.info("Loading documents")
         documents = doc_loader.load_documents(paths)
+        if not documents:
+            logger.error("No documents found. Exiting.")
+            print("No documents found in the provided paths. Please provide a valid directory or file(s).")
+            return
         logger.info(f"Loaded {len(documents)} documents")
     except Exception as e:
         logger.error(f"Error loading documents: {str(e)}")
@@ -65,12 +69,6 @@ def main():
             formatted_answer = qa_system.answer_question(question)
             logger.info("Answer generated successfully")
             print(formatted_answer)
-            
-            # Print additional information
-            print("\nDebug Information:")
-            print(f"Question: {question}")
-            print(f"Answer length: {len(formatted_answer)}")
-            print(f"Answer (first 200 characters): {formatted_answer[:200]}...")
             
         except Exception as e:
             logger.error(f"An error occurred while processing the question: {str(e)}")
